@@ -8,14 +8,17 @@ Meses = {"Janeiro": 1,
          "junho": 6,
          "julho": 7,
          "agosto": 8,
+         "setembro": 9,
+         "outubro": 10,
+         "novembro": 11,
+         "dezembro": 12,
         }
 Signo = ["Capricornio", "Aquario", "Peixes", "Aries", "Touro", "Gemeos", "Cancer", "Leao", "Virgem", "Libra", "Escorpiao", "Sagitario"]
-Calculo = Mes
 if Dia > 21:
-    print ("Seu signo e", Signo[Mes])
+    print ("Seu signo e", Signo[Meses{Mes}])
 else:
     Mes -= 1
-    print ("Seu signo e", Signo[Mes])
+    print ("Seu signo e", Signo[Meses{Mes}])
 
 
 
