@@ -14,7 +14,7 @@ Meses = {"Janeiro": 1,
          "dezembro": 12,
         }
 Signo = ["Capricornio", "Aquario", "Peixes", "Aries", "Touro", "Gemeos", "Cancer", "Leao", "Virgem", "Libra", "Escorpiao", "Sagitario"]
-Coiso = Meses{Mes}
+Coiso = Meses[Mes]
 if Dia > 21:
     print ("Seu signo e", Signo[Coiso])
 else:
