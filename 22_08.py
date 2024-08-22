@@ -4,6 +4,10 @@ Meses = {"Janeiro": 1,
          "fevereiro": 2, 
          "marco": 3,
          "abril": 4,
+         "maio": 5,
+         "junho": 6,
+         "julho": 7,
+         "agosto": 8,
         }
 Signo = ["Capricornio", "Aquario", "Peixes", "Aries", "Touro", "Gemeos", "Cancer", "Leao", "Virgem", "Libra", "Escorpiao", "Sagitario"]
 Calculo = Mes
