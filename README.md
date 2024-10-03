@@ -1,13 +1,13 @@
 # Repositorio para guardar as atividades de algoritimos, 2024
 ## -Atividade 1:
-CaixaEletronico
+[CaixaEletronico](https://github.com/AgemT/TarefasPortugol/tree/CaixaEletronico)
 ## -Atividade 2:
-AtividadeModEDiv
+[AtividadeModEDiv](https://github.com/AgemT/TarefasPortugol/tree/AtividadeModEDiv)
 ## -Atividade 3: 
-AtividadeAvaliativa
+[AtividadeAvaliativa](https://github.com/AgemT/TarefasPortugol/tree/AtividadeAvaliativa)
 ## -Atividade 4: 
 NAO FOI POSTADA AINDA
 ## -Atividade 5: 
 teste de mesa
 ## -Atividade 6: 
-TarefaRepeticao
+[TarefaRepeticao](https://github.com/AgemT/TarefasPortugol/tree/TarefaRepeticao)
