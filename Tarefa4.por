@@ -1,26 +1,35 @@
 programa
 {
-	inclua biblioteca Matematica --> m
-	// eletricista precisa comprar fio que irá passar, pelo telhado, por toda a
-	//gonal de uma casa de formato retangular. Como ele não tem condições de
-	//ir a diagonal com precisão (ou talvez não queira...), a solução alternativa
-	// ele encontrou foi medir os lados da casa, sabendo que a diagonal pode ser
-	//culada com base nos lados pelo Teorema de Pitágoras (a2= b2+ c2).
-	funcao inicio()
-	{	
-		real diagonal
-		diagonal = m.raiz(((11.5*11.5)+(6.3*6.3)), 2)
-		escreva("O tamanho do fio diagonal sera de ", diagonal, " metros")
-	}
+    funcao inicio()
+    {
+        inteiro tamanhoPedaco = 45
+        inteiro t3 = 300 // Tábua de 3 metros
+        inteiro t4 = 400 // Tábua de 4 metros
+        inteiro t5 = 500 // Tábua de 5 metros
+
+        // Cálculos para a tábua de 3 metros
+        inteiro qtdPecasT3 = t3 / tamanhoPedaco
+        inteiro sobraT3 = t3 % tamanhoPedaco
+
+        // Cálculos para a tábua de 4 metros
+        inteiro qtdPecasT4 = t4 / tamanhoPedaco
+        inteiro sobraT4 = t4 % tamanhoPedaco
+
+        // Cálculos para a tábua de 5 metros
+        inteiro qtdPecasT5 = t5 / tamanhoPedaco
+        inteiro sobraT5 = t5 % tamanhoPedaco
+
+        // Exibir os resultados
+        escreva("Para a tábua de 3 metros:\n")
+        escreva("Quantidade de pedaços de 45 cm: ", qtdPecasT3, "\n")
+        escreva("Sobra: ", sobraT3, " cm\n\n")
+
+        escreva("Para a tábua de 4 metros:\n")
+        escreva("Quantidade de pedaços de 45 cm: ", qtdPecasT4, "\n")
+        escreva("Sobra: ", sobraT4, " cm\n\n")
+
+        escreva("Para a tábua de 5 metros:\n")
+        escreva("Quantidade de pedaços de 45 cm: ", qtdPecasT5, "\n")
+        escreva("Sobra: ", sobraT5, " cm\n")
+    }
 }
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 451; 
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
