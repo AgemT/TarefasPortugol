@@ -5,27 +5,16 @@ programa
 	inclua biblioteca Texto --> tx
 	inclua biblioteca Tipos --> ti
 
+	caracter letras[8] = {'a','b','c','d','e','f','g','h'}
 	//define a velocidade de texto
 		inteiro velo = 10
 	//serve para carregar todos os caracteres que o usuario usa durante o jogo
-		cadeia inputCaracter = "a"
-		cadeia input 
+		cadeia input = "a"
 	//autoexplicativo
 		cadeia nomeJogador
-	//carrega em qual pergunta o jogador esta
-	inteiro perguntas = 1
 	//Segura cada escolha que o jogador fez, importante para definir finais
-	cadeia escolhasFeitas = ""
-	//define quais fichas ja foram lidas
-	cadeia fichasLidas = ""
-	inteiro credibilidade = 100
-	//Estes logicos servem para definir quais fichas devem ser lidas!
-		logico a = verdadeiro
-		logico b = verdadeiro
-		logico c = verdadeiro
-		logico d = verdadeiro
-		logico E = verdadeiro
-
+		cadeia escolhasFeitas = ""
+		
 	funcao inicio()
 	{
 		inicializar()
@@ -55,32 +44,16 @@ programa
 		u.aguarde(velo)
 		apresentar()
 	}
+	//Estes logicos servem para definir quais fichas devem ser lidas!
+		inteiro nFicha = 0
+		logico a = verdadeiro
+		logico b = verdadeiro
+		logico c = verdadeiro
+		logico d = verdadeiro
+		logico E = verdadeiro
 	//apresenta os personagens, baseado em quais fichas ainda nao foram lidas	
 	funcao apresentar()
 	{
-		para (inteiro i = tx.numero_caracteres(fichasLidas);i>0;i--)
-		{
-			se(tx.extrair_subtexto(fichasLidas,i,i)=="a")
-			{
-				a=falso
-			}
-			se(tx.extrair_subtexto(fichasLidas,i,i)=="b")
-			{
-				b=falso
-			}
-			se(tx.extrair_subtexto(fichasLidas,i,i)=="c")
-			{
-				c=falso
-			}
-			se(tx.extrair_subtexto(fichasLidas,i,i)=="d")
-			{
-				d=falso
-			}
-			se(tx.extrair_subtexto(fichasLidas,i,i)=="e")
-			{
-				E=falso
-			}
-		}
 			limpa()
 			escrevaa("Qual ficha eu devo ler?/n",velo)
 			se(a)
@@ -124,35 +97,65 @@ programa
 				caso 'a':
 					se(a)
 					{
-						escrevaa(leituraFichas("ALEXANDRE MIKAL","19/09/2011","uma casinha, propriedade da mae, MAFALDA","menor aprendiz na empresa do falecido"),velo)
-						fichasLidas = fichasLidas+"a"
+						escrevaa(leituraFichas("ALEXANDRE MIKAL","19 do 09 de 2011","uma casinha, propriedade da mae, MAFALDA","menor aprendiz na empresa do falecido"),velo)
+						a = falso
+					}
+					senao
+					{
+						erro("pra que ler denovo homi?")
+						apresentar()
 					}
 				pare
 				caso 'b':
 					se(b)
 					{
-						escrevaa(leituraFichas("MAFALDA MIKAL","12/02/2000","sua casa propria no suburbio","secretaria e organizadora principal da empresa"),velo)
-						fichasLidas = fichasLidas+"b"
+						escrevaa(leituraFichas("MAFALDA MIKAL","12 do 02 de 2000","sua casa propria no suburbio","secretaria e organizadora principal da empresa"),velo)
+						b = falso
+					}
+					senao
+					{
+						erro("pra que ler denovo homi?")
+						apresentar()
 					}
 				pare
 				caso 'c':
 					se(c)
 					{
-						escrevaa(leituraFichas("JOSIANE FERNANDA DE LUCAS","15/07/1985","uma casa, propriedade do falecido","esposa trofeu"),velo)
-						fichasLidas = fichasLidas+"c"
+						escrevaa(leituraFichas("JOSIANE FERNANDA DE LUCAS","15 do 07 de 1985","uma casa, propriedade do falecido","esposa trofeu"),velo)
+						c = falso
+					}
+					senao
+					{
+						erro("pra que ler denovo homi?")
+						apresentar()
 					}
 				pare
 				caso 'd':
-					escrevaa(leituraFichas("MAIO NIN TENDO BROS","02/03/1983","Estacao Play","faz-tudo"),velo)
-					fichasLidas = fichasLidas+"d"
+					se(d)
+					{
+						escrevaa(leituraFichas("MAIO NIN TENDO BROS","02 do 03 de 1983","Estacao Play","faz-tudo"),velo)
+						d = falso
+					}
+					senao
+						{
+							erro("pra que ler denovo homi?")
+							apresentar()
+						}
 				pare
 				caso 'e':
-					escrevaa(leituraFichas("FILIPA LOVIANE","21/12/1988","um bairro nobre","vice-diretora da empresa do falecido"),velo)
-					fichasLidas = fichasLidas+"e"
+					se(E)
+						{
+							escrevaa(leituraFichas("FILIPA LOVIANE","21/12/1988","um bairro nobre","vice-diretora da empresa do falecido"),velo)
+							E = falso
+						}
+					senao
+						{
+							erro("pra que ler denovo homi?")
+							apresentar()
+						}
 				pare
 				caso contrario:
-					escrevaa("Eu deveria e voltar pra cama... /n",velo)
-					erro()
+					erro("Eu deveria e voltar pra cama... /n")
 					apresentar()
 				pare
 			}
@@ -170,12 +173,12 @@ programa
 		u.aguarde(500)
 		limpa()
 		escrevaa("Devo ler outra ficha?(s ou n)/n",velo)
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "s"
 			}
-		escolha(ti.cadeia_para_caracter(inputCaracter))
+		escolha(ti.cadeia_para_caracter(input))
 		{
 			caso 's':
 				limpa()
@@ -190,14 +193,17 @@ programa
 			pare
 			caso contrario:
 				limpa()
-				escrevaa("\"E se eu comesse o papel...?\"/n",velo)
-				erro()
+				erro("\"E se eu comesse o papel...?\"/n")
 				repitaApresentacao()
 		}
 	}
-	caracter pregunta1,pregunta2,pregunta3,pregunta4,pregunta5,pregunta6
+	//carrega em qual pergunta o jogador esta
+	inteiro perguntas = 1
+	caracter pregunta1,pregunta2,pregunta3,pregunta4,pregunta5
 	funcao interrogatorio()
 	{
+		u.aguarde(300)
+		limpa()
 		escolha(ti.inteiro_para_caracter(perguntas))
 		{
 		caso'1':
@@ -215,24 +221,21 @@ programa
 		caso '5':
 			escrevaa("Quinta pergunta: /na)Pode repetir o que aconteceu para garantir que entendi corretamente /nb)Algum detalhe mudou desde a última vez que você falou sobre isso? /nc)Você já contou essa história a alguém antes? /n",velo)
 		pare
-		caso'6':
-			escrevaa("Sexta pergunta: /na)Você sabe de alguém que teria interesse em fazer mal ao falecido ou sua familia? /nb)Alguém lhe pediu para mentir ou omitir alguma informação? /nc)Existe algo que você ainda não mencionou que acha importante? /n",velo)
-		pare
-		caso '7':
+		caso contrario:
 			cenaCrime()
 		pare
 		}
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "a"
 			}
-		se(ti.cadeia_e_caracter(inputCaracter))
+		se(ti.cadeia_e_caracter(input))
 		{
-			escolhasFeitas += inputCaracter
+			escolhasFeitas += input
 		}
 		limpa()
-		interrogar(perguntas,ti.cadeia_para_caracter(inputCaracter))
+		interrogar(perguntas,ti.cadeia_para_caracter(input))
 	}
 	funcao interrogar(inteiro nPergunta, caracter pergunta )
 {
@@ -279,11 +282,13 @@ programa
 
 				pare
 				caso contrario:
-					erro()
+					erro("o segredo e que quem matou ele fui eu")
 					perguntas--
 					interrogatorio()
 				pare
 			}
+			interrogatorio()
+			
 		pare
 		caso '2':
 			pregunta2 = pergunta
@@ -317,7 +322,7 @@ programa
 
 				pare
 				caso contrario:
-					erro()
+					erro("porque voce faz isso comigo...")
 					perguntas--
 					interrogatorio()
 				pare
@@ -354,7 +359,7 @@ programa
 
 				pare
 				caso contrario:
-					erro()
+					erro("pergunta secreta? nao so o mesmo de sempre..")
 					perguntas--
 					interrogatorio()
 				pare
@@ -391,7 +396,7 @@ programa
 
 				pare
 				caso contrario:
-					erro()
+					erro("Eu nao aguento mais")
 					perguntas--
 					interrogatorio()
 				pare
@@ -428,26 +433,31 @@ programa
 
 				pare
 				caso contrario:
-					erro()
+					erro("o cara nem pra deixar vazio, ta testando o sistema de erro, so pode")
 					perguntas--
 					interrogatorio()
 				pare
 			}
 		pare
+		caso '6':
+			cenaCrime()
+		pare
 	}
 }
 	funcao cenaCrime()
 	{
+		u.aguarde(300)
+		limpa()
 		escrevaa("Após interrogar todos os suspeitos e reunir várias informações, o detetive"+nomeJogador+" se encontra em um dilema. Ele decide que é hora de revisitar o local do crime, onde o Sr. Arnaldo caiu. Ao chegar na mansão, ele sente uma tensão no ar. As sombras dançam nas paredes enquanto ele examina o ambiente.",velo)
 		u.aguarde(500)
 		limpa()
 		escrevaa("Detetive "+nomeJogador+" observa a área onde o Sr. Arnaldo caiu. Ele se depara com alguns itens que parecem fora do lugar: algumas câmeras quebradas, uma garrafa de vinho quebrada, um lenço ensanguentado e documentos . Ele percebe que esses detalhes podem ser fundamentais para resolver o mistério./na) Investigar a garrafa de vinho quebrada./nb) Examinar o lenço ensanguentado./nc) Ler os documentos./nd) Deixar o local e voltar para interrogar novamente um suspeito./n",velo)
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "a"
 			}
-		escolha(ti.cadeia_para_caracter(inputCaracter))
+		escolha(ti.cadeia_para_caracter(input))
 		{
 			caso 'a':
 				vinho()
@@ -462,68 +472,74 @@ programa
 				outro()
 			pare
 			caso contrario:
-				erro()
+				erro("ahhh, chega de tanta investigacaooooo")
 				cenaCrime()
 			pare
 		}
 	}
+	logico vinhoLido 
 	funcao vinho()
 	{
+		vinhoLido = falso
 		escrevaa("Ao examinar a garrafa, "+nomeJogador+" pode perceber que ela nao era um vinho qualquer, e com certeza nao era a que estava sendo distribuida na festa./nEsta garrafa parecia muito mais.... cara..../na)Encontrar informações sobre quem comprou a garrafa e interrogar essa pessoa./nb)Usar a garrafa como uma pista para deduzir quem estava em posse dela.",velo)
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "a"
 			}
-		escolha(ti.cadeia_para_caracter(inputCaracter))
+		escolha(ti.cadeia_para_caracter(input))
 		{
 			caso 'a':
-				   escreva("Você usa a garrafa como pista e encontra um novo suspeito!")
+				   escreva("A garrafa apresenta um novo suspeito!")
 					advogado()
 			pare
 			caso 'b':
 					 escreva("Eh claro que esta garrafa pertence a FILIPA!")
-						finalFilipa()
+					juri("filipa")
 			pare
 			caso contrario:
-			erro()
+			erro("Ta me tirando fi?")
 			vinho()
 			pare
 		}
 	}
+	logico lencoLido 
 	funcao lenco()
 	{
+		lencoLido = verdadeiro
 		escrevaa("Você examina o lenço ensanguentado e encontra um monograma. Isso indica que pertence a alguém específico./na) Descobrir a quem pertence o lenço e confrontá-lo./nb) Tentar encontrar impressões digitais no lenço.",velo)
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "a"
 			}
-		escolha(ti.cadeia_para_caracter(inputCaracter))
+		escolha(ti.cadeia_para_caracter(input))
 		{
 			caso 'a':
 				 escrevaa("J.F... O lenço pertence à esposa de Arnaldo.",velo)
-            			finalVinganca()
+				 juri("josiane")
 			pare
 			caso 'b':
 				escrevaa("As impressões digitais levam a um novo suspeito...",velo)
             			advogado()
 			pare
 			caso contrario:
-				erro()
+				erro("Bom! EU tentei!")
 				lenco()
 			pare
 		}
 	}
+	logico documentoLido
 	funcao documentos()
 	{
+		documentoLido = verdadeiro
 		 escrevaa("Os documentos estao ilegiveis! Ha vinho por toda parte, a unica coisa que consigo ler eh o contato de um advogado.../na) Entrar em contato com o advogado para obter mais informações./nb) Investigar por que o advogado estava presente na festa./n",velo)
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "a"
 			}
-		escolha(ti.cadeia_para_caracter(inputCaracter))
+		escolha(ti.cadeia_para_caracter(input))
 		{
 			caso 'a':
 				advogado()
@@ -535,23 +551,24 @@ programa
             
 			pare
 			caso contrario:
-			erro()
+			erro("Meh, pra que trabalhar neh? vou eh voltar p casa")
 			documentos()
 			pare
 		}
 	}
+	logico alexandreInvestigado
 	funcao outro()
 	{
+	   
+	   alexandreInvestigado = verdadeiro
 	   escrevaa("Você decide voltar e interrogar ALEXANDRE, o estagiario, ele pode ter informações valiosas sobre o que aconteceu naquela noite, sendo um estagiario, ele dificilmente seria foco de atencao.../na) Sobre suas últimas ações na festa./nb) Sobre a relação dele com os outros suspeitos.",velo)
-		leia(inputCaracter)
-		se(inputCaracter == "")
+		leia(input)
+		se(input == "")
 			{
-				inputCaracter = "a"
+				input = "a"
 			}
-		alexandre(ti.cadeia_para_caracter(inputCaracter))
-	}
-
-	/*
+		alexandre(ti.cadeia_para_caracter(input))
+	}/*
 	 * Motivos e Conspiração: Com base no que os personagens disseram, há várias possibilidades. 
 	 * Josiane tinha motivos financeiros e menciona que alguém sugeriu que ela omitisse as brigas. 
 	 * Filipa e Mario tinham desavenças sobre negócios, e Filipa ouviu uma briga, o que sugere uma 
@@ -559,159 +576,247 @@ programa
 	 * não resolvida com Arnaldo, enquanto Alexandre parece ser o mais inocente, mas pode esconder algo mais profundo.
 	 */
 	 funcao mario()
-	 {
-	 	//o mario chama seu advogado e se recusa a falar, ele e acusado de incompetencia e voce decide fazer um acordo, se ele compartilhar alguma info valiosa
-	 	//ele pode falar sobre o projeto que estava fazendo com filipa (se o jogador sabe disso), senao ele a acusa...
-    escrevaa("Você decide interrogar Mario novamente, esperando que ele revele algo novo.", velo)
-    escrevaa("Mario se mostra evasivo, mas após algumas perguntas incisivas, ele finalmente revela que estava trabalhando com Filipa em um projeto importante.", velo)
-    escrevaa("Ele também menciona que as câmeras da festa estavam desligadas, mas nega qualquer envolvimento direto no acidente do Sr. Arnaldo.", velo)
-    escrevaa("Embora Mario se mostre relutante em fornecer mais detalhes, você sente que ele sabe mais do que está deixando transparecer.", velo)
-    escrevaa("Fim do interrogatório de Mario. Você precisa de mais evidências para continuar.", velo)
-
-	 }
-	 funcao alexandre(caracter pregunta)
-	 {
-	 	//o alexandre nao esta em casa quando o detetive o procura, mas sua mae mafalda sim... ela fala algo entre as linhas de estar muito decepcionada com ele
-	 	// e esta muito abalada, o jogador a acusa de esconder um suspeito... 
-	 	escrevaa("Você decide ir atrás de Alexandre, o estagiário, para mais respostas.", velo)
-	    escrevaa("Ao chegar, você é recebido por Mafalda, a mãe de Alexandre, que se mostra nervosa.", velo)
-	    escrevaa("Ela menciona que Alexandre saiu de casa há algumas horas, mas sua atitude sugere que ela está escondendo algo.", velo)
-	    escrevaa("Você pressiona, e ela revela que Alexandre ficou perturbado depois da festa, mas insiste que ele não teve nada a ver com o que aconteceu.", velo)
-	    escrevaa("Fim do interrogatório. Parece que Alexandre pode saber algo importante, mas ainda é uma peça solta no quebra-cabeça.", velo)
-	 }
-	 funcao advogado()
-	 {
-	 	//O advogado, pressionado, estar relacionado com um golpe para derrubar o arnaldo
-	 	 escrevaa("Você finalmente decide confrontar o advogado mencionado nos documentos manchados de vinho.", velo)
-    escrevaa("Ao ser pressionado, o advogado admite que estava envolvido em uma conspiração para derrubar o Sr. Arnaldo, mas nega qualquer envolvimento direto no acidente.", velo)
-    escrevaa("Ele menciona que havia interesses poderosos que queriam se livrar do Sr. Arnaldo por causa de seus negócios questionáveis.", velo)
-    escrevaa("Com isso, você tem a confissão de um participante da conspiração, mas será que ele foi o culpado direto?", velo)
-    escrevaa("Fim do interrogatório. Novas pistas surgem, mas o mistério ainda não está completamente resolvido.", velo)
-	 }
-	 //eu preciso usar mais as escolhas do jogadorr!!!
-	 funcao juri()
-	 {
-	 	//aqui sera feita a acusacao no juri, onde o jogador deve provar que o acusado e culpado, o problema e que se ele nao tiver argumentos ele perde CREDIBILIDADE....
-	 	 escrevaa("O julgamento final começa, e você é chamado para apresentar suas evidências contra o principal suspeito.", velo)
-	    escrevaa("O júri está atento às suas palavras, mas tudo depende da solidez das suas provas.", velo)
-	    se (rolar() > 15)  // Sucesso na persuasão
-	    {
-	        escrevaa("Você apresenta um caso sólido, usando todas as pistas e testemunhos coletados. O júri decide a favor de sua acusação, e o culpado é condenado.", velo)
-	        finalAdvogado()
-	    }
-	    senao
-	    {
-	        escrevaa("Infelizmente, suas provas não são suficientes para convencer o júri. O caso termina sem uma condenação clara, e o mistério ainda persiste.", velo)
-	        finalNaoResolvido()
-	    }
-	 }
-
-	 //aqui sao os finais que ele pode conseguir a partir da funcao juri!
-	 funcao finalAdvogado()
+{
+    escrevaa("Você decide interrogar Mario novamente, esperando que ele revele algo novo...", velo)
+    inteiro marioResp = rolar()
+    
+    se (marioResp >= 15)
     {
-        escrevaa("Você confronta o advogado, que acaba confessando sua participação na conspiração.",velo)
-        escrevaa("Ele revela que o Sr. Arnaldo tinha segredos perigosos que não podiam vir à tona.",velo)
-        escrevaa("Com a confissão, o caso é encerrado e a verdade é revelada.",velo)
-        escrevaa("Fim da história! Você resolveu o mistério.",velo)
+        escrevaa("Mario se mostra evasivo, mas após algumas perguntas incisivas, ele finalmente revela que estava trabalhando com Filipa em um projeto importante.", velo)
+        u.aguarde(500)
+        escrevaa("/nMARIO: \"As câmeras da festa estavam desligadas. Ela 'quiria' fingir um acidente pro Sr. Arnaldo.\"", velo)
+        u.aguarde(300)
+        limpa()
+        cenaCrime()
     }
-
-    funcao finalAcidente()
+    senao
     {
-        escrevaa("Através das pistas, você descobre que a morte do Sr. Arnaldo foi um trágico acidente.",velo)
-        escrevaa("A revelação traz alívio, mas também tristeza, pois a vida não pode ser recuperada.",velo)
-        escrevaa("Você se despede dos envolvidos e reflete sobre o valor da vida.",velo)
-        escrevaa("Fim da história! Um triste desfecho para um grande mistério.",velo)
+        escrevaa("MARIO: \"Eu sei o 'sinhor' ta fazendo! Eh obvio que eh o homi das cameras que planejou tudo neh! Pois bem! tomi esta!\"/nMario chama um advogado", velo)
+        u.aguarde(300)
+        escrevaa("O tal advogado... ", velo)
+        finalNaoResolvido("preso")
     }
+}
 
-    funcao finalVinganca()
+	funcao alexandre()
+{
+    escrevaa("Estou decidido em ir atrás de Alexandre, o estagiário, para mais respostas.", velo)
+    escrevaa("Ao chegar, você é recebido por Mafalda, a mãe de Alexandre...", velo)
+    inteiro alexandreCasa = rolar()
+    
+    se (alexandreCasa >= 10)
     {
-        escrevaa("Você descobre que a esposa do Sr. Arnaldo tinha motivos para querer a morte dele.",velo)
-        escrevaa("Em um confronto dramático, ela confessa que agiu por vingança.",velo)
-        escrevaa("A justiça é feita, mas a história termina em um lamento pela traição.",velo)
-        escrevaa("Fim da história! A vingança trouxe apenas dor.",velo)
+        escrevaa("MAFALDA: \"Olá senhor detetive..! O que precisa?\"", velo)
+        escrevaa("\"O Alexandre, seu filho, está? Preciso fazer algumas perguntas que acho que ele pode responder...\"", velo)
+        escrevaa("MAFALDA: \"Infelizmente ele saiu... O menino parecia tão triste... O senhor sabe, com a morte e tudo... O Arnaldo era como um pai para ele....\"", velo)
+        u.aguarde(300)
     }
+    senao
+    {
+        escrevaa("ALEXANDRE: \"Ah! Detetive! Eu sinto muito, minha mãe não está em casa!\"", velo)
+        escrevaa("\"Não se preocupe, jovem. É com você mesmo que preciso falar...\"", velo)
+        escrevaa("ALEXANDRE: \"Eu não posso te ajudar! Eu não vi nada!\"", velo)
+        escrevaa("\"Como não? Você não era ajudante para tudo?\"", velo)
+        escrevaa("ALEXANDRE: \"Isso não é da sua conta!!!!\"", velo)
+        escrevaa("\"Pois agora é! Você está preso, jovem!\"", velo)
+        juri("alexandre")
+    }
+}
 
-    funcao finalNaoResolvido()
+funcao advogado()
+{
+    escrevaa("Você decide confrontar o advogado...", velo)
+    inteiro advogadoPreso = rolar()
+    
+    se (advogadoPreso > 10)
     {
-        escrevaa("Apesar de todas as investigações, o caso permanece envolto em mistério.",velo)
-        escrevaa("Você decide deixar a mansão, mas a dúvida sobre o que realmente aconteceu nunca te abandona.",velo)
-        escrevaa("Um mistério que ficará para sempre sem resposta.",velo)
-        escrevaa("Fim da história! O mistério persiste...",velo)
+        escrevaa("ADVOGADO: \"Eu admito... Estava envolvido numa conspiração para derrubar o Sr. Arnaldo. Ele... Ele se meteu com as pessoas erradas.\"", velo)
+        escrevaa("\"E qual era exatamente o seu papel nisso tudo? Estava ajudando ou foi forçado a participar?\"", velo)
+        escrevaa("ADVOGADO: \"Eu ajudava... discretamente. Não me envolvi diretamente no acidente, mas sabia que alguns clientes estavam incomodados com os negócios escusos dele. Havia interesses poderosos em jogo.\"", velo)
+        escrevaa("\"Interesses poderosos? Pode ser mais específico?\"", velo)
+        escrevaa("ADVOGADO: \"Não posso dar nomes... Mas eram pessoas de influência. Eles achavam que o Sr. Arnaldo estava se tornando um problema, alguém que não se podia mais controlar.\"", velo)
+        escrevaa("\"Você sabia que isso poderia acabar em tragédia?\"", velo)
+        escrevaa("ADVOGADO: \"Eu nunca imaginei que chegariam a tanto. Eu estava apenas... ajudando a abrir algumas portas.\"", velo)
+        u.aguarde(300)
     }
-    funcao finalFilipa()
+    senao
     {
-    	//ainda nao sei oq por aqui, mas se a filipa foi acusada de forma muito rapida acho q ela nn deve ser presa
+        escrevaa("O homem que procuro foi encontrado morto esta manhã...", velo)
+        u.aguarde(300)
+        finalNaoResolvido("advogadoMorto")
+    }
+}
+
+inteiro credibilidade = 100
+
+funcao juri(cadeia culpado)
+{
+    escrevaa("O julgamento final começa, e você é chamado para apresentar suas evidências contra o principal suspeito.", velo)
+    escrevaa("O júri está atento às suas palavras, mas tudo depende da solidez das suas provas.", velo)
+    
+    se(culpado == "alexandre")
+    {
+        escrevaa("Você acusa Alexandre. Como vai sustentar essa acusação?", velo)
+        escrevaa("....", velo)
+        escrevaa("Eu...", velo)
+        escrevaa("Não tenho nada...", velo)
+        credibilidade -= 100
+        escrevaa("CREDIBILIDADE -100", velo)
+        escrevaa("SANIDADE -100", velo)
+        finalAcidente()
+    }
+    senao se(culpado == "filipa")
+    {
+        escrevaa("Você apresenta seu caso contra Filipa, apontando as inconsistências no depoimento dela.", velo)
+        
+        // Exemplo de perguntas adicionais com base em informações anteriores
+        se(pregunta1 == 'a' ou pregunta1 == 'd')
+        {
+            escrevaa("\"Inicialmente, me foi dito que a ré estava com um colega, conversando sobre projetos...\"", velo)
+            credibilidade += 20
+            escrevaa("CREDIBILIDADE +20", velo)
+        }
+        senao se (pregunta1 == 'c')
+        {
+            escrevaa("\"A primeira resposta da ré nos guiava a uma direção oposta, acusando outros de terem motivações...\"", velo)
+            credibilidade -= 10
+            escrevaa("CREDIBILIDADE -10", velo)
+        }
+        
+        escrevaa("O júri pondera suas palavras enquanto Filipa permanece em silêncio.", velo)
+        finalAdvogado()
+    }
+    senao se(culpado == "josiane")
+    {
+        escrevaa("Você argumenta que Josiane teve motivos financeiros para cometer o crime.", velo)
+        escrevaa("Escolha uma evidência para o caso:/na) Josiane estava desesperada por dinheiro e tentou omitir as brigas com Arnaldo./nb) Ela tinha acesso aos documentos financeiros que revelavam dívidas e fraudes.", velo)
+        leia(input)
+        
+        se(input == "a")
+        {
+            escrevaa("Josiane fica visivelmente abalada, confirmando a tensão entre ela e a vítima.", velo)
+            escrevaa("O júri começa a questionar as intenções dela.", velo)
+            credibilidade += 15
+            escrevaa("CREDIBILIDADE +15", velo)
+            finalAdvogado()
+        }
+        senao se(input == "b")
+        {
+            escrevaa("A prova documental confirma o envolvimento dela nos negócios duvidosos do Sr. Arnaldo.", velo)
+            escrevaa("O júri parece convencido da participação dela no caso.", velo)
+            credibilidade += 30
+            escrevaa("CREDIBILIDADE +30", velo)
+            finalAdvogado()
+        }
+        senao
+        {
+            escrevaa("Sua acusação parece inconsistente, e o júri não está convencido.", velo)
+            credibilidade -= 20
+            escrevaa("CREDIBILIDADE -20", velo)
+            finalAcidente()
+        }
+    }
+}
+
+funcao finalAdvogado()
+{
+    escrevaa("Você confronta o advogado, que acaba confessando sua participação na conspiração.", velo)
+    escrevaa("Ele revela que o Sr. Arnaldo tinha segredos perigosos que não podiam vir à tona.", velo)
+    escrevaa("Com a confissão, o caso é encerrado e a verdade é revelada.", velo)
+    escrevaa("Fim da história! Você resolveu o mistério.", velo)
+}
+
+funcao finalAcidente()
+{
+    escrevaa("Ahhh a morte do Sr. Arnaldo... um trágico acidente....", velo)
+    escrevaa("A revelação traz alívio, mas também tristeza, pois a vida não pode ser recuperada.", velo)
+    escrevaa("Você se despede dos envolvidos e reflete sobre o valor da vida.", velo)
+}
+	//josiane matou
+   funcao finalVinganca()
+{
+    escrevaa("Você descobre que a esposa do Sr. Arnaldo tinha motivos para querer a morte dele.", velo)
+    escrevaa("Em um confronto dramático, ela confessa que agiu por vingança.", velo)
+    escrevaa("A justiça é feita, mas a história termina em um lamento pela traição.", velo)
+    escrevaa("Fim da história! A vingança trouxe apenas dor.", velo)
+}
+
+funcao finalNaoResolvido(cadeia estado)
+{
+    se(estado == "preso")
+    {
+        escrevaa("Você foi incapaz de resolver o caso e agora enfrenta as consequências.", velo)
+    }
+    
+    escrevaa("Apesar de todas as investigações, o caso permanece envolto em mistério.", velo)
+    escrevaa("Você decide deixar a mansão, mas a dúvida sobre o que realmente aconteceu nunca te abandona.", velo)
+    escrevaa("Um mistério que ficará para sempre sem resposta.", velo)
+    escrevaa("Fim da história! O mistério persiste...", velo)
+}
+
+funcao finalFilipa()
+{
     escrevaa("Após uma longa investigação, você percebe que todas as pistas apontam para Filipa.", velo)
     escrevaa("Entretanto, a falta de provas conclusivas deixa o caso em uma zona cinzenta.", velo)
-    escrevaa("Filipa nega com veemência sua participação, e seu álibi parece se sustentar, mesmo com algumas contradições.", velo)
-    escrevaa("No final, o júri decide por falta de provas, e Filipa é absolvida. O caso permanece sem solução oficial, mas você não consegue tirar da cabeça a desconfiança de que ela sabe mais do que admite.", velo)
+    escreavaa("Filipa nega com veemência sua participação, e seu álibi parece se sustentar, mesmo com algumas contradições.", velo)
+    escrevaa("No final, o júri decide por falta de provas, e Filipa é absolvida.", velo)
+    escrevaa("O caso permanece sem solução oficial, mas você não consegue tirar da cabeça a desconfiança de que ela sabe mais do que admite.", velo)
     escrevaa("Fim da história! Um desfecho sem justiça completa.", velo)
-
-    }
-	funcao inteiro rolar()
-	{
-		//essa funcao pode ser usada para persuasao, por exemplo
-		retorne u.sorteia(0,20)
-	}
-	funcao erro()
-	{
-		escrevaa("Que ideia boba! Voltando aos meus pensamentos normais...",velo)
-		u.aguarde(velo)
-		limpa()
-	}
-	funcao escrevaa(cadeia texto, inteiro velocidadeSeg)
-		{						
-			caracter letra
-			caracter letraAntes = ' '
-			inteiro j = 0
-			
-			para(inteiro i = 0 ; i < tx.numero_caracteres(texto) ; i++)
-			{	
-				se (i!=0)
-				{
-					letraAntes=tx.obter_caracter(texto,i-1)
-				}
-				letra = tx.obter_caracter(texto, i)
-				se(j == 149 ou (letra == 'n' e (letraAntes=='/')))
-				{
-					escreva("\n")
-					j = 0 
-				}
-				se(letra == '/' ou (letraAntes=='/' e (letra=='n')))
-				{
-					escreva("")
-				}
-				senao
-				{
-					escreva(letra)
-				}
-				j++
-				
-				escolha(letra)
-				{
-	
-					caso ' ': u.aguarde(0) pare				
-					caso ',': u.aguarde(velocidadeSeg * 3) pare	
-					caso ':': u.aguarde(velocidadeSeg * 3) pare	
-					caso ';': u.aguarde(velocidadeSeg * 3) pare		
-					caso '.': u.aguarde(velocidadeSeg * 5) pare			
-					caso '!': u.aguarde(velocidadeSeg * 5) pare				
-					caso '?': u.aguarde(velocidadeSeg * 5) pare				
-					caso contrario: u.aguarde(velocidadeSeg) pare
-					
-				}
-			}
-		}
 }
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 28942; 
- * @DOBRAMENTO-CODIGO = [160, 661];
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
+
+funcao inteiro rolar()
+{
+    // Essa função pode ser usada para persuasão, por exemplo
+    retorne u.sorteia(0,20)
+}
+
+funcao erro(cadeia oqFalar)
+{
+    escrevaa(oqFalar, velo)
+    u.aguarde(velo)
+    escrevaa("Que ideia boba! Voltando aos meus pensamentos normais...", velo)
+    u.aguarde(velo)
+    limpa()
+}
+
+funcao escrevaa(cadeia texto, inteiro velocidadeSeg)
+{						
+    caracter letra
+    caracter letraAntes = ' '
+    inteiro j = 0
+	
+    para(inteiro i = 0 ; i < tx.numero_caracteres(texto) ; i++)
+    {	
+        se (i != 0)
+        {
+            letraAntes = tx.obter_caracter(texto,i-1)
+        }
+        letra = tx.obter_caracter(texto, i)
+        se(j == 149 ou (letra == 'n' e (letraAntes == '/')))
+        {
+            escreva("\n")
+            j = 0 
+        }
+        se(letra == '/' ou (letraAntes == '/' e (letra == 'n')))
+        {
+            escreva("")
+        }
+        senao
+        {
+            escreva(letra)
+        }
+        j++
+		
+        escolha(letra)
+        {
+            caso ' ': u.aguarde(0) pare				
+            caso ',': u.aguarde(velocidadeSeg * 3) pare	
+            caso ':': u.aguarde(velocidadeSeg * 3) pare	
+            caso ';': u.aguarde(velocidadeSeg * 3) pare		
+            caso '.': u.aguarde(velocidadeSeg * 5) pare			
+            caso '!': u.aguarde(velocidadeSeg * 5) pare				
+            caso '?': u.aguarde(velocidadeSeg * 5) pare				
+            caso contrario: u.aguarde(velocidadeSeg) pare
+        }
+    }
+}
