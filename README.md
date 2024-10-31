@@ -11,3 +11,7 @@ teste de mesa
 teste de mesa
 ## -Atividade 6: 
 [TarefaRepeticao](https://github.com/AgemT/TarefasPortugol/tree/TarefaRepeticao)
+## Atividade de final de bimestre:
+[JogoDeTexto](https://github.com/AgemT/TarefasPortugol/blob/JogoDeTexto/UmRaroCasoDeGanancia.por)
+## - Atividade 1 Terceiro Bimestre:
+[vetores](https://github.com/AgemT/TarefasPortugol/blob/vetores/tarefa.por)
