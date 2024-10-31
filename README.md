@@ -6,7 +6,7 @@
 ## -Atividade 3: 
 [AtividadeAvaliativa](https://github.com/AgemT/TarefasPortugol/tree/AtividadeAvaliativa)
 ## -Atividade 4: 
-NAO FOI POSTADA AINDA
+teste de mesa
 ## -Atividade 5: 
 teste de mesa
 ## -Atividade 6: 
