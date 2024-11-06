@@ -5,7 +5,7 @@ programa
 	inclua biblioteca Texto --> tx
 	inclua biblioteca Tipos --> ti
 
-	caracter letras[8] = {'a','b','c','d','e','f','g','h'}
+		caracter letras[8] = {'a','b','c','d','e','f','g','h'}
 	//define a velocidade de texto
 		inteiro velo = 10
 	//serve para carregar todos os caracteres que o usuario usa durante o jogo
@@ -14,10 +14,28 @@ programa
 		cadeia nomeJogador
 	//Segura cada escolha que o jogador fez, importante para definir finais
 		cadeia escolhasFeitas = ""
+	//Estes logicos servem para definir quais fichas devem ser lidas!
+		inteiro nFicha = 0
+		logico a = verdadeiro
+		logico b = verdadeiro
+		logico c = verdadeiro
+		logico d = verdadeiro
+		logico E = verdadeiro
+	//carrega em qual pergunta o jogador esta
+		inteiro perguntas = 1
+		caracter pregunta1,pregunta2,pregunta3,pregunta4,pregunta5
+	//oq mais ele investigou?
+		logico vinhoLido
+		logico lencoLido 
+		logico documentoLido
+		logico alexandreInvestigado
+	//"vida"
+		inteiro credibilidade = 0
 		
 	funcao inicio()
 	{
-		inicializar()
+		//inicializar()
+		juri("alexandre")
 	}
 	//Da um nome ao usuario
 	funcao inicializar()
@@ -44,13 +62,6 @@ programa
 		u.aguarde(velo)
 		apresentar()
 	}
-	//Estes logicos servem para definir quais fichas devem ser lidas!
-		inteiro nFicha = 0
-		logico a = verdadeiro
-		logico b = verdadeiro
-		logico c = verdadeiro
-		logico d = verdadeiro
-		logico E = verdadeiro
 	//apresenta os personagens, baseado em quais fichas ainda nao foram lidas	
 	funcao apresentar()
 	{
@@ -197,9 +208,6 @@ programa
 				repitaApresentacao()
 		}
 	}
-	//carrega em qual pergunta o jogador esta
-	inteiro perguntas = 1
-	caracter pregunta1,pregunta2,pregunta3,pregunta4,pregunta5
 	funcao interrogatorio()
 	{
 		u.aguarde(300)
@@ -476,8 +484,7 @@ programa
 				cenaCrime()
 			pare
 		}
-	}
-	logico vinhoLido 
+	} 
 	funcao vinho()
 	{
 		vinhoLido = falso
@@ -503,7 +510,6 @@ programa
 			pare
 		}
 	}
-	logico lencoLido 
 	funcao lenco()
 	{
 		lencoLido = verdadeiro
@@ -529,7 +535,6 @@ programa
 			pare
 		}
 	}
-	logico documentoLido
 	funcao documentos()
 	{
 		documentoLido = verdadeiro
@@ -556,7 +561,6 @@ programa
 			pare
 		}
 	}
-	logico alexandreInvestigado
 	funcao outro()
 	{
 	   
@@ -567,256 +571,303 @@ programa
 			{
 				input = "a"
 			}
-		alexandre(ti.cadeia_para_caracter(input))
-	}/*
-	 * Motivos e Conspiração: Com base no que os personagens disseram, há várias possibilidades. 
-	 * Josiane tinha motivos financeiros e menciona que alguém sugeriu que ela omitisse as brigas. 
-	 * Filipa e Mario tinham desavenças sobre negócios, e Filipa ouviu uma briga, o que sugere uma 
-	 * possível conspiração envolvendo essas figuras de poder. MAFALDA pode ter uma relação emocional 
-	 * não resolvida com Arnaldo, enquanto Alexandre parece ser o mais inocente, mas pode esconder algo mais profundo.
-	 */
+		//alexandre(ti.cadeia_para_caracter(input))
+	}
 	 funcao mario()
-{
-    escrevaa("Você decide interrogar Mario novamente, esperando que ele revele algo novo...", velo)
-    inteiro marioResp = rolar()
-    
-    se (marioResp >= 15)
-    {
-        escrevaa("Mario se mostra evasivo, mas após algumas perguntas incisivas, ele finalmente revela que estava trabalhando com Filipa em um projeto importante.", velo)
-        u.aguarde(500)
-        escrevaa("/nMARIO: \"As câmeras da festa estavam desligadas. Ela 'quiria' fingir um acidente pro Sr. Arnaldo.\"", velo)
-        u.aguarde(300)
-        limpa()
-        cenaCrime()
-    }
-    senao
-    {
-        escrevaa("MARIO: \"Eu sei o 'sinhor' ta fazendo! Eh obvio que eh o homi das cameras que planejou tudo neh! Pois bem! tomi esta!\"/nMario chama um advogado", velo)
-        u.aguarde(300)
-        escrevaa("O tal advogado... ", velo)
-        finalNaoResolvido("preso")
-    }
-}
-
+	{
+	    escrevaa("Você decide interrogar Mario novamente, esperando que ele revele algo novo...", velo)
+	    inteiro marioResp = rolar()
+	    
+	    se (marioResp >= 15)
+	    {
+	        escrevaa("Mario se mostra evasivo, mas após algumas perguntas incisivas, ele finalmente revela que estava trabalhando com Filipa em um projeto importante.", velo)
+	        u.aguarde(500)
+	        escrevaa("/nMARIO: \"As câmeras da festa estavam desligadas. Ela 'quiria' fingir um acidente pro Sr. Arnaldo.\"", velo)
+	        u.aguarde(300)
+	        limpa()
+	        cenaCrime()
+	    }
+	    senao
+	    {
+	        escrevaa("MARIO: \"Eu sei o 'sinhor' ta fazendo! Eh obvio que eh o homi das cameras que planejou tudo neh! Pois bem! tomi esta!\"/nMario chama um advogado", velo)
+	        u.aguarde(300)
+	        escrevaa("O tal advogado... ", velo)
+	        finalNaoResolvido("preso")
+	    }
+	}
 	funcao alexandre()
+	{
+	    escrevaa("Estou decidido em ir atrás de Alexandre, o estagiário, para mais respostas.", velo)
+	    escrevaa("Ao chegar, você é recebido por Mafalda, a mãe de Alexandre...", velo)
+	    inteiro alexandreCasa = rolar()
+	    
+	    se (alexandreCasa >= 10)
+	    {
+	        escrevaa("MAFALDA: \"Olá senhor detetive..! O que precisa?\"", velo)
+	        escrevaa("\"O Alexandre, seu filho, está? Preciso fazer algumas perguntas que acho que ele pode responder...\"", velo)
+	        escrevaa("MAFALDA: \"Infelizmente ele saiu... O menino parecia tão triste... O senhor sabe, com a morte e tudo... O Arnaldo era como um pai para ele....\"", velo)
+	        u.aguarde(300)
+	    }
+	    senao
+	    {
+	        escrevaa("ALEXANDRE: \"Ah! Detetive! Eu sinto muito, minha mãe não está em casa!\"", velo)
+	        escrevaa("\"Não se preocupe, jovem. É com você mesmo que preciso falar...\"", velo)
+	        escrevaa("ALEXANDRE: \"Eu não posso te ajudar! Eu não vi nada!\"", velo)
+	        escrevaa("\"Como não? Você não era ajudante para tudo?\"", velo)
+	        escrevaa("ALEXANDRE: \"Isso não é da sua conta!!!!\"", velo)
+	        escrevaa("\"Pois agora é! Você está preso, jovem!\"", velo)
+	        juri("alexandre")
+	    }
+	}
+	funcao advogado()
+	{
+	    escrevaa("Você decide confrontar o advogado...", velo)
+	    inteiro advogadoPreso = rolar()
+	    
+	    se (advogadoPreso > 10)
+	    {
+	        escrevaa("ADVOGADO: \"Eu admito... Estava envolvido numa conspiração para derrubar o Sr. Arnaldo. Ele... Ele se meteu com as pessoas erradas.\"", velo)
+	        escrevaa("\"E qual era exatamente o seu papel nisso tudo? Estava ajudando ou foi forçado a participar?\"", velo)
+	        escrevaa("ADVOGADO: \"Eu ajudava... discretamente. Não me envolvi diretamente no acidente, mas sabia que alguns clientes estavam incomodados com os negócios escusos dele. Havia interesses poderosos em jogo.\"", velo)
+	        escrevaa("\"Interesses poderosos? Pode ser mais específico?\"", velo)
+	        escrevaa("ADVOGADO: \"Não posso dar nomes... Mas eram pessoas de influência. Eles achavam que o Sr. Arnaldo estava se tornando um problema, alguém que não se podia mais controlar.\"", velo)
+	        escrevaa("\"Você sabia que isso poderia acabar em tragédia?\"", velo)
+	        escrevaa("ADVOGADO: \"Eu nunca imaginei que chegariam a tanto. Eu estava apenas... ajudando a abrir algumas portas.\"", velo)
+	        u.aguarde(300)
+	    }
+	    senao
+	    {
+	        escrevaa("O homem que procuro foi encontrado morto esta manhã...", velo)
+	        u.aguarde(300)
+	        finalNaoResolvido("advogadoMorto")
+	    }
+	}
+	funcao juri(cadeia culpado)
+	{
+	    escrevaa("O julgamento final começa, e você é chamado para apresentar suas evidências contra o principal suspeito.", velo)
+	    escrevaa("/nO júri está atento às suas palavras, mas tudo depende da solidez das suas provas.", velo)
+	    
+	    se(culpado == "alexandre")
+	    {
+	        escrevaa("/nJURI: Você acusa Alexandre, como vai sustentar essa acusação?/n", velo)
+	        escrevaa("....", velo)
+	        escrevaa(" Eu...", velo)
+	        escrevaa(" Não tenho nada...", velo)
+	        credibilidade -= 100
+	        escrevaa("/nCREDIBILIDADE -100", velo)
+	        escrevaa("/nSANIDADE -100/n", velo)
+	        finalAcidente()
+	    }
+	    senao se(culpado == "filipa")
+	    {
+	        escrevaa("Você apresenta seu caso contra Filipa, apontando as inconsistências no depoimento dela.", velo)
+	        
+	        // Exemplo de perguntas adicionais com base em informações anteriores
+	        se(pregunta1 == 'a' ou pregunta1 == 'd')
+	        {
+	            escrevaa("\"Inicialmente, me foi dito que a ré estava com um colega, conversando sobre projetos...\"", velo)
+	            credibilidade += 20
+	            escrevaa("CREDIBILIDADE +20", velo)
+	        }
+	        senao se (pregunta1 == 'c')
+	        {
+	            escrevaa("\"A primeira resposta da ré nos guiava a uma direção oposta, acusando outros de terem motivações...\"", velo)
+	            credibilidade -= 10
+	            escrevaa("CREDIBILIDADE -10", velo)
+	        }
+	        
+	        escrevaa("O júri pondera suas palavras enquanto Filipa permanece em silêncio.", velo)
+	        finalAdvogado()
+	    }
+	    senao se(culpado == "josiane")
+	    {
+	        escrevaa("Você argumenta que Josiane teve motivos financeiros para cometer o crime.", velo)
+	        escrevaa("Escolha uma evidência para o caso:/na) Josiane estava desesperada por dinheiro e tentou omitir as brigas com Arnaldo./nb) Ela tinha acesso aos documentos financeiros que revelavam dívidas e fraudes.", velo)
+	        leia(input)
+	        
+	        se(input == "a")
+	        {
+	            escrevaa("Josiane fica visivelmente abalada, confirmando a tensão entre ela e a vítima.", velo)
+	            escrevaa("O júri começa a questionar as intenções dela.", velo)
+	            credibilidade += 15
+	            escrevaa("CREDIBILIDADE +15", velo)
+	            finalAdvogado()
+	        }
+	        senao se(input == "b")
+	        {
+	            escrevaa("A prova documental confirma o envolvimento dela nos negócios duvidosos do Sr. Arnaldo.", velo)
+	            escrevaa("O júri parece convencido da participação dela no caso.", velo)
+	            credibilidade += 30
+	            escrevaa("CREDIBILIDADE +30", velo)
+	            finalAdvogado()
+	        }
+	        senao
+	        {
+	            escrevaa("Sua acusação parece inconsistente, e o júri não está convencido.", velo)
+	            credibilidade -= 20
+	            escrevaa("CREDIBILIDADE -20", velo)
+	            finalAcidente()
+	        }
+	    }
+	}
+	// Função para acusar Alexandre
+	funcao acusarAlexandre()
+	{
+	    escrevaa("Você acusa Alexandre. Como vai sustentar essa acusação?", velo)
+	    escrevaa("....", velo)
+	    escrevaa("Eu...", velo)
+	    escrevaa("Nao tenho nada...", velo)
+	    ajustaCredibilidade(-100)
+	    finalAcidente()
+	}
+	// Função para acusar Filipa
+	funcao acusarFilipa()
+	{
+	    escrevaa("Você apresenta seu caso contra Filipa, apontando as inconsistências no depoimento dela.", velo)
+	    se(pregunta1 == 'a' ou pregunta1 == 'd')
+	    {
+	        escrevaa("\"Inicialmente me foi dito que ela estava com um colega, conversando sobre projetos...\"", velo)
+	    }
+	    senao se (pregunta1 == 'c')
+	    {
+	        escrevaa("\"A primeira resposta dela nos guiava a uma direção oposta, ela acusava outros de terem motivações...\"", velo)
+	    }
+	}
+	// Função para acusar Josiane
+	funcao acusarJosiane()
+	{
+	    escrevaa("Você argumenta que Josiane teve motivos financeiros para cometer o crime.", velo)
+	    escrevaa("a) Josiane estava desesperada por dinheiro e tentou omitir as brigas com Arnaldo./n" +
+	             "b) Ela tinha acesso aos documentos financeiros que revelavam dívidas e fraudes.", velo)
+	    leia(input)
+	    
+	    se(input == "a")
+	    {
+	        escrevaa("Josiane fica visivelmente abalada, confirmando a tensão entre ela e a vítima.", velo)
+	        escrevaa("O júri começa a questionar as intenções dela.", velo)
+	    }
+	    senao se(input == "b")
+	    {
+	        escrevaa("A prova documental confirma o envolvimento dela nos negócios duvidosos do Sr. Arnaldo.", velo)
+	        escrevaa("O júri parece convencido da participação dela no caso.", velo)
+	    }
+	}
+	funcao finalAdvogado()
+	{
+	    escrevaa("Você confronta o advogado, que acaba confessando sua participação na conspiração.", velo)
+	    escrevaa("Ele revela que o Sr. Arnaldo tinha segredos perigosos que não podiam vir à tona.", velo)
+	    escrevaa("Com a confissão, o caso é encerrado e a verdade é revelada.", velo)
+	    escrevaa("Fim da história! Você resolveu o mistério.", velo)
+	}
+	funcao finalAcidente()
 {
-    escrevaa("Estou decidido em ir atrás de Alexandre, o estagiário, para mais respostas.", velo)
-    escrevaa("Ao chegar, você é recebido por Mafalda, a mãe de Alexandre...", velo)
-    inteiro alexandreCasa = rolar()
-    
-    se (alexandreCasa >= 10)
-    {
-        escrevaa("MAFALDA: \"Olá senhor detetive..! O que precisa?\"", velo)
-        escrevaa("\"O Alexandre, seu filho, está? Preciso fazer algumas perguntas que acho que ele pode responder...\"", velo)
-        escrevaa("MAFALDA: \"Infelizmente ele saiu... O menino parecia tão triste... O senhor sabe, com a morte e tudo... O Arnaldo era como um pai para ele....\"", velo)
-        u.aguarde(300)
-    }
-    senao
-    {
-        escrevaa("ALEXANDRE: \"Ah! Detetive! Eu sinto muito, minha mãe não está em casa!\"", velo)
-        escrevaa("\"Não se preocupe, jovem. É com você mesmo que preciso falar...\"", velo)
-        escrevaa("ALEXANDRE: \"Eu não posso te ajudar! Eu não vi nada!\"", velo)
-        escrevaa("\"Como não? Você não era ajudante para tudo?\"", velo)
-        escrevaa("ALEXANDRE: \"Isso não é da sua conta!!!!\"", velo)
-        escrevaa("\"Pois agora é! Você está preso, jovem!\"", velo)
-        juri("alexandre")
-    }
-}
-
-funcao advogado()
-{
-    escrevaa("Você decide confrontar o advogado...", velo)
-    inteiro advogadoPreso = rolar()
-    
-    se (advogadoPreso > 10)
-    {
-        escrevaa("ADVOGADO: \"Eu admito... Estava envolvido numa conspiração para derrubar o Sr. Arnaldo. Ele... Ele se meteu com as pessoas erradas.\"", velo)
-        escrevaa("\"E qual era exatamente o seu papel nisso tudo? Estava ajudando ou foi forçado a participar?\"", velo)
-        escrevaa("ADVOGADO: \"Eu ajudava... discretamente. Não me envolvi diretamente no acidente, mas sabia que alguns clientes estavam incomodados com os negócios escusos dele. Havia interesses poderosos em jogo.\"", velo)
-        escrevaa("\"Interesses poderosos? Pode ser mais específico?\"", velo)
-        escrevaa("ADVOGADO: \"Não posso dar nomes... Mas eram pessoas de influência. Eles achavam que o Sr. Arnaldo estava se tornando um problema, alguém que não se podia mais controlar.\"", velo)
-        escrevaa("\"Você sabia que isso poderia acabar em tragédia?\"", velo)
-        escrevaa("ADVOGADO: \"Eu nunca imaginei que chegariam a tanto. Eu estava apenas... ajudando a abrir algumas portas.\"", velo)
-        u.aguarde(300)
-    }
-    senao
-    {
-        escrevaa("O homem que procuro foi encontrado morto esta manhã...", velo)
-        u.aguarde(300)
-        finalNaoResolvido("advogadoMorto")
-    }
-}
-
-inteiro credibilidade = 100
-
-funcao juri(cadeia culpado)
-{
-    escrevaa("O julgamento final começa, e você é chamado para apresentar suas evidências contra o principal suspeito.", velo)
-    escrevaa("O júri está atento às suas palavras, mas tudo depende da solidez das suas provas.", velo)
-    
-    se(culpado == "alexandre")
-    {
-        escrevaa("Você acusa Alexandre. Como vai sustentar essa acusação?", velo)
-        escrevaa("....", velo)
-        escrevaa("Eu...", velo)
-        escrevaa("Não tenho nada...", velo)
-        credibilidade -= 100
-        escrevaa("CREDIBILIDADE -100", velo)
-        escrevaa("SANIDADE -100", velo)
-        finalAcidente()
-    }
-    senao se(culpado == "filipa")
-    {
-        escrevaa("Você apresenta seu caso contra Filipa, apontando as inconsistências no depoimento dela.", velo)
-        
-        // Exemplo de perguntas adicionais com base em informações anteriores
-        se(pregunta1 == 'a' ou pregunta1 == 'd')
-        {
-            escrevaa("\"Inicialmente, me foi dito que a ré estava com um colega, conversando sobre projetos...\"", velo)
-            credibilidade += 20
-            escrevaa("CREDIBILIDADE +20", velo)
-        }
-        senao se (pregunta1 == 'c')
-        {
-            escrevaa("\"A primeira resposta da ré nos guiava a uma direção oposta, acusando outros de terem motivações...\"", velo)
-            credibilidade -= 10
-            escrevaa("CREDIBILIDADE -10", velo)
-        }
-        
-        escrevaa("O júri pondera suas palavras enquanto Filipa permanece em silêncio.", velo)
-        finalAdvogado()
-    }
-    senao se(culpado == "josiane")
-    {
-        escrevaa("Você argumenta que Josiane teve motivos financeiros para cometer o crime.", velo)
-        escrevaa("Escolha uma evidência para o caso:/na) Josiane estava desesperada por dinheiro e tentou omitir as brigas com Arnaldo./nb) Ela tinha acesso aos documentos financeiros que revelavam dívidas e fraudes.", velo)
-        leia(input)
-        
-        se(input == "a")
-        {
-            escrevaa("Josiane fica visivelmente abalada, confirmando a tensão entre ela e a vítima.", velo)
-            escrevaa("O júri começa a questionar as intenções dela.", velo)
-            credibilidade += 15
-            escrevaa("CREDIBILIDADE +15", velo)
-            finalAdvogado()
-        }
-        senao se(input == "b")
-        {
-            escrevaa("A prova documental confirma o envolvimento dela nos negócios duvidosos do Sr. Arnaldo.", velo)
-            escrevaa("O júri parece convencido da participação dela no caso.", velo)
-            credibilidade += 30
-            escrevaa("CREDIBILIDADE +30", velo)
-            finalAdvogado()
-        }
-        senao
-        {
-            escrevaa("Sua acusação parece inconsistente, e o júri não está convencido.", velo)
-            credibilidade -= 20
-            escrevaa("CREDIBILIDADE -20", velo)
-            finalAcidente()
-        }
-    }
-}
-
-funcao finalAdvogado()
-{
-    escrevaa("Você confronta o advogado, que acaba confessando sua participação na conspiração.", velo)
-    escrevaa("Ele revela que o Sr. Arnaldo tinha segredos perigosos que não podiam vir à tona.", velo)
-    escrevaa("Com a confissão, o caso é encerrado e a verdade é revelada.", velo)
-    escrevaa("Fim da história! Você resolveu o mistério.", velo)
-}
-
-funcao finalAcidente()
-{
-    escrevaa("Ahhh a morte do Sr. Arnaldo... um trágico acidente....", velo)
-    escrevaa("A revelação traz alívio, mas também tristeza, pois a vida não pode ser recuperada.", velo)
+	u.aguarde(100*velo)
+	limpa()
+    escrevaa("FINAL ACIDENTE\n", velo)
+    escrevaa("\nA revelação traz alívio, mas também tristeza, pois a vida não pode ser recuperada.", velo)
     escrevaa("Você se despede dos envolvidos e reflete sobre o valor da vida.", velo)
 }
-	//josiane matou
-   funcao finalVinganca()
+  	funcao finalVinganca()
 {
     escrevaa("Você descobre que a esposa do Sr. Arnaldo tinha motivos para querer a morte dele.", velo)
     escrevaa("Em um confronto dramático, ela confessa que agiu por vingança.", velo)
     escrevaa("A justiça é feita, mas a história termina em um lamento pela traição.", velo)
     escrevaa("Fim da história! A vingança trouxe apenas dor.", velo)
 }
-
-funcao finalNaoResolvido(cadeia estado)
-{
-    se(estado == "preso")
-    {
-        escrevaa("Você foi incapaz de resolver o caso e agora enfrenta as consequências.", velo)
-    }
-    
-    escrevaa("Apesar de todas as investigações, o caso permanece envolto em mistério.", velo)
-    escrevaa("Você decide deixar a mansão, mas a dúvida sobre o que realmente aconteceu nunca te abandona.", velo)
-    escrevaa("Um mistério que ficará para sempre sem resposta.", velo)
-    escrevaa("Fim da história! O mistério persiste...", velo)
-}
-
-funcao finalFilipa()
-{
-    escrevaa("Após uma longa investigação, você percebe que todas as pistas apontam para Filipa.", velo)
-    escrevaa("Entretanto, a falta de provas conclusivas deixa o caso em uma zona cinzenta.", velo)
-    escreavaa("Filipa nega com veemência sua participação, e seu álibi parece se sustentar, mesmo com algumas contradições.", velo)
-    escrevaa("No final, o júri decide por falta de provas, e Filipa é absolvida.", velo)
-    escrevaa("O caso permanece sem solução oficial, mas você não consegue tirar da cabeça a desconfiança de que ela sabe mais do que admite.", velo)
-    escrevaa("Fim da história! Um desfecho sem justiça completa.", velo)
-}
-
-funcao inteiro rolar()
-{
-    // Essa função pode ser usada para persuasão, por exemplo
-    retorne u.sorteia(0,20)
-}
-
-funcao erro(cadeia oqFalar)
-{
-    escrevaa(oqFalar, velo)
-    u.aguarde(velo)
-    escrevaa("Que ideia boba! Voltando aos meus pensamentos normais...", velo)
-    u.aguarde(velo)
-    limpa()
-}
-
-funcao escrevaa(cadeia texto, inteiro velocidadeSeg)
-{						
-    caracter letra
-    caracter letraAntes = ' '
-    inteiro j = 0
-	
-    para(inteiro i = 0 ; i < tx.numero_caracteres(texto) ; i++)
-    {	
-        se (i != 0)
-        {
-            letraAntes = tx.obter_caracter(texto,i-1)
-        }
-        letra = tx.obter_caracter(texto, i)
-        se(j == 149 ou (letra == 'n' e (letraAntes == '/')))
-        {
-            escreva("\n")
-            j = 0 
-        }
-        se(letra == '/' ou (letraAntes == '/' e (letra == 'n')))
-        {
-            escreva("")
-        }
-        senao
-        {
-            escreva(letra)
-        }
-        j++
+	funcao finalNaoResolvido(cadeia estado)
+	{
+	    se(estado == "preso")
+	    {
+	        escrevaa("Você foi incapaz de resolver o caso e agora enfrenta as consequências.", velo)
+	    }
+	    
+	    escrevaa("Apesar de todas as investigações, o caso permanece envolto em mistério.", velo)
+	    escrevaa("Você decide deixar a mansão, mas a dúvida sobre o que realmente aconteceu nunca te abandona.", velo)
+	    escrevaa("Um mistério que ficará para sempre sem resposta.", velo)
+	    escrevaa("Fim da história! O mistério persiste...", velo)
+	}
+	funcao finalFilipa()
+	{
+	    escrevaa("Após uma longa investigação, você percebe que todas as pistas apontam para Filipa.", velo)
+	    escrevaa("Entretanto, a falta de provas conclusivas deixa o caso em uma zona cinzenta.", velo)
+	    escrevaa("Filipa nega com veemência sua participação, e seu álibi parece se sustentar, mesmo com algumas contradições.", velo)
+	    escrevaa("No final, o júri decide por falta de provas, e Filipa é absolvida.", velo)
+	    escrevaa("O caso permanece sem solução oficial, mas você não consegue tirar da cabeça a desconfiança de que ela sabe mais do que admite.", velo)
+	    escrevaa("Fim da história! Um desfecho sem justiça completa.", velo)
+	}
+	funcao inteiro rolar()
+	{
+	    // Essa função pode ser usada para persuasão, por exemplo
+	    retorne u.sorteia(0,20)
+	}
+	funcao erro(cadeia oqFalar)
+	{
+	    escrevaa(oqFalar, velo)
+	    u.aguarde(velo)
+	    escrevaa("Que ideia boba! Voltando aos meus pensamentos normais...", velo)
+	    u.aguarde(velo)
+	    limpa()
+	}
+	funcao ajustaCredibilidade(inteiro valor)
+	{
+	    credibilidade += valor
+	    se(credibilidade < 0)
+	    {
+	        credibilidade = 0
+	    }
+	}
+	funcao escrevaa(cadeia texto, inteiro velocidadeSeg)
+	{						
+	    caracter letra
+	    caracter letraAntes = ' '
+	    inteiro j = 0
 		
-        escolha(letra)
-        {
-            caso ' ': u.aguarde(0) pare				
-            caso ',': u.aguarde(velocidadeSeg * 3) pare	
-            caso ':': u.aguarde(velocidadeSeg * 3) pare	
-            caso ';': u.aguarde(velocidadeSeg * 3) pare		
-            caso '.': u.aguarde(velocidadeSeg * 5) pare			
-            caso '!': u.aguarde(velocidadeSeg * 5) pare				
-            caso '?': u.aguarde(velocidadeSeg * 5) pare				
-            caso contrario: u.aguarde(velocidadeSeg) pare
-        }
-    }
+	    para(inteiro i = 0 ; i < tx.numero_caracteres(texto) ; i++)
+	    {	
+	        se (i != 0)
+	        {
+	            letraAntes = tx.obter_caracter(texto,i-1)
+	        }
+	        letra = tx.obter_caracter(texto, i)
+	        se(j == 149 ou (letra == 'n' e (letraAntes == '/')))
+	        {
+	            escreva("\n")
+	            j = 0 
+	        }
+	        se(letra == '/' ou (letraAntes == '/' e (letra == 'n')))
+	        {
+	            escreva("")
+	        }
+	        senao
+	        {
+	            escreva(letra)
+	        }
+	        j++
+			
+	        escolha(letra)
+	        {
+	            caso ' ': u.aguarde(0) pare				
+	            caso ',': u.aguarde(velocidadeSeg * 3) pare	
+	            caso ':': u.aguarde(velocidadeSeg * 3) pare	
+	            caso ';': u.aguarde(velocidadeSeg * 3) pare		
+	            caso '.': u.aguarde(velocidadeSeg * 5) pare			
+	            caso '!': u.aguarde(velocidadeSeg * 5) pare				
+	            caso '?': u.aguarde(velocidadeSeg * 5) pare				
+	            caso contrario: u.aguarde(velocidadeSeg) pare
+	        }
+	    }
+	}
 }
+
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 37570; 
+ * @DOBRAMENTO-CODIGO = [174, 797, 810];
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */
