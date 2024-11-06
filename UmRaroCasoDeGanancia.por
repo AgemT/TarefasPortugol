@@ -37,6 +37,7 @@ programa
 		//inicializar()
 		juri("alexandre")
 	}
+	
 	//Da um nome ao usuario
 	funcao inicializar()
 	{
@@ -53,6 +54,7 @@ programa
 		escrevaa("\"Meu nome e "+ nomeJogador + " e eu sou o detetive encarregado do caso do Sr.Arnaldo, a minha identidade esta aqui....\"/nPOLICIAL:\"Pode passar, por agora...  \"", velo)
 		novoJogo()
 	}
+	
 	//Conta o problema principal
 	funcao novoJogo()
 	{ 
@@ -62,6 +64,7 @@ programa
 		u.aguarde(velo)
 		apresentar()
 	}
+	
 	//apresenta os personagens, baseado em quais fichas ainda nao foram lidas	
 	funcao apresentar()
 	{
@@ -172,6 +175,7 @@ programa
 			}
 			repitaApresentacao()
 	}
+	
 	funcao cadeia leituraFichas(cadeia nomeFicha,cadeia nascimento, cadeia casa, cadeia trabalho)
 	{
 		limpa()
@@ -208,6 +212,7 @@ programa
 				repitaApresentacao()
 		}
 	}
+	
 	funcao interrogatorio()
 	{
 		u.aguarde(300)
@@ -245,6 +250,7 @@ programa
 		limpa()
 		interrogar(perguntas,ti.cadeia_para_caracter(input))
 	}
+	
 	funcao interrogar(inteiro nPergunta, caracter pergunta )
 {
 	perguntas++
@@ -452,6 +458,7 @@ programa
 		pare
 	}
 }
+	
 	funcao cenaCrime()
 	{
 		u.aguarde(300)
@@ -485,6 +492,7 @@ programa
 			pare
 		}
 	} 
+
 	funcao vinho()
 	{
 		vinhoLido = falso
@@ -510,6 +518,7 @@ programa
 			pare
 		}
 	}
+
 	funcao lenco()
 	{
 		lencoLido = verdadeiro
@@ -535,6 +544,7 @@ programa
 			pare
 		}
 	}
+	
 	funcao documentos()
 	{
 		documentoLido = verdadeiro
@@ -561,6 +571,7 @@ programa
 			pare
 		}
 	}
+
 	funcao outro()
 	{
 	   
@@ -573,7 +584,8 @@ programa
 			}
 		//alexandre(ti.cadeia_para_caracter(input))
 	}
-	 funcao mario()
+	
+	funcao mario()
 	{
 	    escrevaa("Você decide interrogar Mario novamente, esperando que ele revele algo novo...", velo)
 	    inteiro marioResp = rolar()
@@ -595,6 +607,7 @@ programa
 	        finalNaoResolvido("preso")
 	    }
 	}
+
 	funcao alexandre()
 	{
 	    escrevaa("Estou decidido em ir atrás de Alexandre, o estagiário, para mais respostas.", velo)
@@ -619,6 +632,7 @@ programa
 	        juri("alexandre")
 	    }
 	}
+	
 	funcao advogado()
 	{
 	    escrevaa("Você decide confrontar o advogado...", velo)
@@ -642,14 +656,16 @@ programa
 	        finalNaoResolvido("advogadoMorto")
 	    }
 	}
+
 	funcao juri(cadeia culpado)
 	{
 	    escrevaa("O julgamento final começa, e você é chamado para apresentar suas evidências contra o principal suspeito.", velo)
 	    escrevaa("/nO júri está atento às suas palavras, mas tudo depende da solidez das suas provas.", velo)
 	    
 	    se(culpado == "alexandre")
+	    //666 ANAJKNDWEFJERHFJWE
 	    {
-	        escrevaa("/nJURI: Você acusa Alexandre, como vai sustentar essa acusação?/n", velo)
+	        escrevaa("/nJURI:\" Você acusa Alexandre, como vai sustentar essa acusação?\"/n", velo)
 	        escrevaa("....", velo)
 	        escrevaa(" Eu...", velo)
 	        escrevaa(" Não tenho nada...", velo)
@@ -660,21 +676,74 @@ programa
 	    }
 	    senao se(culpado == "filipa")
 	    {
-	        escrevaa("Você apresenta seu caso contra Filipa, apontando as inconsistências no depoimento dela.", velo)
+	        escrevaa("JURI: \"Você apresenta seu caso contra Filipa, o que o sustenta\"\n", velo)
+	        //acusacao referente as respostas da 1 a 3
+	    	   para (inteiro i = 0; i<3; i++)
+	    	   {
+	    	   	cadeia casos
+	    	   	escrevaa(letras[i]+") ",velo)
+	    	   	se((i-1)!=0)
+	    	   	{
+	    	   		casos = tx.extrair_subtexto(escolhasFeitas, i-1, i)
+	    	   	}
+	    	   	senao
+	    	   	{
+	    	   		casos = tx.extrair_subtexto(escolhasFeitas, 0, i)
+	    	   	}
+	    	   	se (casos == "a")
+	    	   	{
+	    	   		se (i==1)
+	    	   		{
+	    	   			escrevaa("escolha referente a primeira pergunta, letra a/n",velo)
+	    	   		}
+	    	   		senao se(i==2)
+	    	   		{
+	    	   			escrevaa("escolha referente a segunda pergunta, letra a/n",velo)
+	    	   		}
+	    	   		senao
+	    	   		{
+	    	   			escrevaa("escolha referente a terceira pergunta, letra a",velo)
+	    	   		}
+	    	   	}
+	    	   	se (casos == "b")
+	    	   	{
+	    	   		se (i==1)
+	    	   		{
+	    	   			escrevaa("escolha referente a primeira pergunta, letra b/n",velo)
+	    	   		}
+	    	   		senao se(i==2)
+	    	   		{
+	    	   			escrevaa("escolha referente a segunda pergunta, letra b/n",velo)
+	    	   		}
+	    	   		senao
+	    	   		{
+	    	   			escrevaa("escolha referente a terceira pergunta, letra b",velo)
+	    	   		}
+	    	   	}
+	    	   	se (casos == "c")
+	    	   	{
+	    	   		se (i==1)
+	    	   		{
+	    	   			escrevaa("escolha referente a primeira pergunta, letra c/n",velo)
+	    	   		}
+	    	   		senao se(i==2)
+	    	   		{
+	    	   			escrevaa("escolha referente a segunda pergunta, letra c/n",velo)
+	    	   		}
+	    	   		senao
+	    	   		{
+	    	   			escrevaa("escolha referente a terceira pergunta, letra c",velo)
+	    	   		}
+	    	   	}
+	    	   	senao
+	    	   	{
+	    	   		escrevaa("escolha referente a primeira pergunta, letra d/n",velo)
+	    	   	}
+	    	   	leia(input)
+	    	   	limpa()
+	    	   	
+	    	   }
 	        
-	        // Exemplo de perguntas adicionais com base em informações anteriores
-	        se(pregunta1 == 'a' ou pregunta1 == 'd')
-	        {
-	            escrevaa("\"Inicialmente, me foi dito que a ré estava com um colega, conversando sobre projetos...\"", velo)
-	            credibilidade += 20
-	            escrevaa("CREDIBILIDADE +20", velo)
-	        }
-	        senao se (pregunta1 == 'c')
-	        {
-	            escrevaa("\"A primeira resposta da ré nos guiava a uma direção oposta, acusando outros de terem motivações...\"", velo)
-	            credibilidade -= 10
-	            escrevaa("CREDIBILIDADE -10", velo)
-	        }
 	        
 	        escrevaa("O júri pondera suas palavras enquanto Filipa permanece em silêncio.", velo)
 	        finalAdvogado()
@@ -710,48 +779,8 @@ programa
 	        }
 	    }
 	}
-	// Função para acusar Alexandre
-	funcao acusarAlexandre()
-	{
-	    escrevaa("Você acusa Alexandre. Como vai sustentar essa acusação?", velo)
-	    escrevaa("....", velo)
-	    escrevaa("Eu...", velo)
-	    escrevaa("Nao tenho nada...", velo)
-	    ajustaCredibilidade(-100)
-	    finalAcidente()
-	}
-	// Função para acusar Filipa
-	funcao acusarFilipa()
-	{
-	    escrevaa("Você apresenta seu caso contra Filipa, apontando as inconsistências no depoimento dela.", velo)
-	    se(pregunta1 == 'a' ou pregunta1 == 'd')
-	    {
-	        escrevaa("\"Inicialmente me foi dito que ela estava com um colega, conversando sobre projetos...\"", velo)
-	    }
-	    senao se (pregunta1 == 'c')
-	    {
-	        escrevaa("\"A primeira resposta dela nos guiava a uma direção oposta, ela acusava outros de terem motivações...\"", velo)
-	    }
-	}
-	// Função para acusar Josiane
-	funcao acusarJosiane()
-	{
-	    escrevaa("Você argumenta que Josiane teve motivos financeiros para cometer o crime.", velo)
-	    escrevaa("a) Josiane estava desesperada por dinheiro e tentou omitir as brigas com Arnaldo./n" +
-	             "b) Ela tinha acesso aos documentos financeiros que revelavam dívidas e fraudes.", velo)
-	    leia(input)
-	    
-	    se(input == "a")
-	    {
-	        escrevaa("Josiane fica visivelmente abalada, confirmando a tensão entre ela e a vítima.", velo)
-	        escrevaa("O júri começa a questionar as intenções dela.", velo)
-	    }
-	    senao se(input == "b")
-	    {
-	        escrevaa("A prova documental confirma o envolvimento dela nos negócios duvidosos do Sr. Arnaldo.", velo)
-	        escrevaa("O júri parece convencido da participação dela no caso.", velo)
-	    }
-	}
+
+	//o advogado estava envolvido no assassinato
 	funcao finalAdvogado()
 	{
 	    escrevaa("Você confronta o advogado, que acaba confessando sua participação na conspiração.", velo)
@@ -759,6 +788,8 @@ programa
 	    escrevaa("Com a confissão, o caso é encerrado e a verdade é revelada.", velo)
 	    escrevaa("Fim da história! Você resolveu o mistério.", velo)
 	}
+
+	//foi um acidente
 	funcao finalAcidente()
 {
 	u.aguarde(100*velo)
@@ -767,6 +798,8 @@ programa
     escrevaa("\nA revelação traz alívio, mas também tristeza, pois a vida não pode ser recuperada.", velo)
     escrevaa("Você se despede dos envolvidos e reflete sobre o valor da vida.", velo)
 }
+
+  	//A esposa o matou
   	funcao finalVinganca()
 {
     escrevaa("Você descobre que a esposa do Sr. Arnaldo tinha motivos para querer a morte dele.", velo)
@@ -774,6 +807,8 @@ programa
     escrevaa("A justiça é feita, mas a história termina em um lamento pela traição.", velo)
     escrevaa("Fim da história! A vingança trouxe apenas dor.", velo)
 }
+
+	//ninguem resolveu
 	funcao finalNaoResolvido(cadeia estado)
 	{
 	    se(estado == "preso")
@@ -786,20 +821,13 @@ programa
 	    escrevaa("Um mistério que ficará para sempre sem resposta.", velo)
 	    escrevaa("Fim da história! O mistério persiste...", velo)
 	}
-	funcao finalFilipa()
-	{
-	    escrevaa("Após uma longa investigação, você percebe que todas as pistas apontam para Filipa.", velo)
-	    escrevaa("Entretanto, a falta de provas conclusivas deixa o caso em uma zona cinzenta.", velo)
-	    escrevaa("Filipa nega com veemência sua participação, e seu álibi parece se sustentar, mesmo com algumas contradições.", velo)
-	    escrevaa("No final, o júri decide por falta de provas, e Filipa é absolvida.", velo)
-	    escrevaa("O caso permanece sem solução oficial, mas você não consegue tirar da cabeça a desconfiança de que ela sabe mais do que admite.", velo)
-	    escrevaa("Fim da história! Um desfecho sem justiça completa.", velo)
-	}
+	
 	funcao inteiro rolar()
 	{
 	    // Essa função pode ser usada para persuasão, por exemplo
 	    retorne u.sorteia(0,20)
 	}
+	
 	funcao erro(cadeia oqFalar)
 	{
 	    escrevaa(oqFalar, velo)
@@ -808,6 +836,7 @@ programa
 	    u.aguarde(velo)
 	    limpa()
 	}
+	
 	funcao ajustaCredibilidade(inteiro valor)
 	{
 	    credibilidade += valor
@@ -816,6 +845,7 @@ programa
 	        credibilidade = 0
 	    }
 	}
+	
 	funcao escrevaa(cadeia texto, inteiro velocidadeSeg)
 	{						
 	    caracter letra
@@ -829,7 +859,7 @@ programa
 	            letraAntes = tx.obter_caracter(texto,i-1)
 	        }
 	        letra = tx.obter_caracter(texto, i)
-	        se(j == 149 ou (letra == 'n' e (letraAntes == '/')))
+	        se(j == 141 ou (letra == 'n' e (letraAntes == '/')))
 	        {
 	            escreva("\n")
 	            j = 0 
@@ -864,8 +894,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 37570; 
- * @DOBRAMENTO-CODIGO = [174, 797, 810];
+ * @POSICAO-CURSOR = 31687; 
+ * @DOBRAMENTO-CODIGO = [34, 41, 58, 68, 185, 215, 253, 461, 495, 521, 547, 574, 587, 610, 635, 692, 707, 722, 783, 792, 802, 811, 824, 830, 839, 848];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
