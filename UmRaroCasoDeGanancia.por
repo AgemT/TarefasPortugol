@@ -60,7 +60,7 @@ programa
 	{ 
 		limpa()
 		
-		escrevaa("CAPITAO:\"O Sr.Arnaldo morreu nesta manha de quinta-feira, no aniversario de seu filho Junior de 13 anos. Ele caiu do camarote de sua mansao *por acidente*, mas a esposa insiste que houve um assassinato. Entre nos, eu acho que ele so estava passando da conta nos pileques... Aqui estao as fichas das testemunhas e principais suspeitos da investigacao detetive "+ nomeJogador +", boa sorte.\"",velo)
+		escrevaa("CAPITAO:\"O Sr.Arnaldo morreu nesta manha de quinta-feira, no aniversario de seu filho mais novo Junior de 16 anos. Ele caiu do camarote de sua mansão *por acidente*, mas a esposa insiste que houve um assassinato. Entre nos, eu acho que ele so estava passando da conta nos pileques... Aqui estao as fichas das testemunhas e principais suspeitos da investigacao detetive "+ nomeJogador +", boa sorte.\"",velo)
 		u.aguarde(velo)
 		apresentar()
 	}
@@ -92,6 +92,18 @@ programa
 			} 
 			senao
 			{
+			se(F)
+			{
+				escrevaa("f)LUTER/n",velo)
+			} 
+			senao
+			{
+			se(F)
+			{
+				escrevaa("g)LIAH/n",velo)
+			} 
+			senao
+			{
 				//se o usuario ja tiver lido todas as fichas, acaba essa sessao.
 				limpa()
 				escrevaa("\"Eu preciso interrogar os suspeitos.\"",velo)
@@ -111,7 +123,7 @@ programa
 				caso 'a':
 					se(a)
 					{
-						escrevaa(leituraFichas("ALEXANDRE MIKAL","19 do 09 de 2011","uma casinha, propriedade da mae, MAFALDA","menor aprendiz na empresa do falecido"),velo)
+						escrevaa(leituraFichas("ALEXANDRE MIKAL","19 do 09 de 2006","uma casinha, propriedade da mae, MAFALDA","menor aprendiz até fazer 18 e continuar trabalhando na empresa do falecido"),velo)
 						a = falso
 					}
 					senao
@@ -162,6 +174,27 @@ programa
 							escrevaa(leituraFichas("FILIPA LOVIANE","21/12/1988","um bairro nobre","vice-diretora da empresa do falecido"),velo)
 							E = falso
 						}
+				}
+					senao
+						{
+							erro("pra que ler denovo homi?")
+							apresentar()
+						}
+				pare
+				caso 'f':
+					se(F)
+						{
+							escrevaa(leituraFichas("Luter Gregorio","29/02/1988","um apartemento nobre no Avai","Grande amigo de infancia e negocios do falecido"),velo)
+							F = falso
+						}
+				pare
+				caso 'g':
+					se(G)
+						{
+							escrevaa(leituraFichas("LIAH LOVIANE","29/02/2007","mora com sua mãe Felipa","nunca teve muito contato direto com o falecido"),velo)
+							G = falso
+						}
+
 					senao
 						{
 							erro("pra que ler denovo homi?")
@@ -267,6 +300,8 @@ programa
 					escrevaa("/nMAFALDA: Estava organizando as coisas na cozinha",velo) //Quem confirma?
 					escrevaa("/nALEXANDRE: Eu estava ajudando na organização da festa no primeiro andar quando tudo aconteceu. Não estava no camarote na hora do acidente.",velo) //Ajudando a organizar em outro lugar
 					escrevaa("/nJOSIANE: Eu estava no palco, esperando a minha vez de falar, quando vi meu marido cair do segundo andar. Foi horrível!",velo) //Estava no palco, alguem viu?
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'b':
 					// b) Você estava sozinho ou com alguém?
@@ -275,7 +310,8 @@ programa
 					escrevaa("/nMAFALDA: Estava organizando as coisas na cozinha, mas tinha outros empregados por perto.Estava com o pessoal da limpeza quando tudo aconteceu. Não vi o que aconteceu, mas ouvi gritos e corri para ver o que era.",velo) //a outra resposta e esta estao coerentes.
 					escrevaa("/nALEXANDRE: Eu estava com outros estagiários ajudando na festa, mas não estava ao lado do Sr. Arnaldo.",velo)//nao estava sozinho, os outros confirmariam?
 					escrevaa("/nJOSIANE: Eu estava com alguns amigos no palco, esperando minha vez de falar.",velo)//no palco novamente, confirma com a antes
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'c':
 					// c) O que você viu ou ouviu durante o evento?
@@ -284,7 +320,8 @@ programa
 					escrevaa("/nMAFALDA: Ouvi gritos e logo em seguida, um estrondo. Todos correram para ver o que tinha acontecido.",velo)
 					escrevaa("/nALEXANDRE: Estava no banheiro quando ouvi o barulho. Saí correndo, mas já era tarde.",velo)//estava no banheiro...
 					escrevaa("/nJOSIANE: Vi meu marido conversando com algumas pessoas antes de subir para o camarote. Estava tão feliz...",velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'd':
 					// d) Pode descrever exatamente o que aconteceu?
@@ -293,7 +330,8 @@ programa
 					escrevaa("/nMAFALDA: Estava na cozinha quando ouvi gritos. Fui até a sala e vi o Sr. Arnaldo no chão, cercado por pessoas preocupadas.",velo)
 					escrevaa("/nALEXANDRE: Estava ajudando a montar as mesas quando ouvi um estrondo. Corri para ver e vi o Sr. Arnaldo caído, as pessoas estavam em pânico.",velo)//a do banheiro nao bate, mas as outras poderiam confrimar essa afirmacao
 					escrevaa("/nJOSIANE: Eu estava prestes a subir ao palco para falar quando ouvi o barulho. Corri para a sala e encontrei o meu marido no chão, sem se mover.",velo)//ninguem estava la?
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso contrario:
 					erro("o segredo e que quem matou ele fui eu")
@@ -315,7 +353,8 @@ programa
 					escrevaa("/nMAFALDA: Eu tive um caso com ele uma vez, mas acabou há muito tempo. Ele era um bom patrão.", velo) //suspeito ter um caso com um "bom patrao" e continuar trabalhando c ele
 					escrevaa("/nALEXANDRE: Eu sou só um estagiário, não tinha uma relação especial com ele.", velo) //faz sentido....
 					escrevaa("/nJOSIANE: Ele sempre foi um bom marido. Não entendo por que alguém faria mal a ele!", velo)//Talvez ela nao saiba de algo?
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'b':
 					// b) Você já teve algum problema com o senhor Arnaldo no passado?
@@ -324,7 +363,8 @@ programa
 					escrevaa("/nMAFALDA: Não, sempre me tratei bem. Ele era gentil e respeitoso comigo, nunca tivemos desavenças.", velo)//parece esconder algo, por que eles terminaram?
 					escrevaa("/nALEXANDRE: Nunca tive problemas com ele. Ele sempre foi legal comigo, mas ouvi rumores sobre desentendimentos com outras pessoas.", velo)//tem varios pelo jeito
 					escrevaa("/nJOSIANE: Sim, tivemos algumas discussões sobre a maneira como ele conduzia os negócios. Às vezes ele era muito rígido e isso gerava conflitos.", velo)//ela concorda com a filipa... sus
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'c':
 					// c) Como você conheceu o senhor Arnaldo?
@@ -333,7 +373,8 @@ programa
 					escrevaa("/nMAFALDA: Conheci o senhor Arnaldo quando comecei a trabalhar na casa dele. Fui contratada como empregada doméstica e logo estabelecemos uma boa relação.", velo) //boa ate dms
 					escrevaa("/nALEXANDRE: Eu o vi pela primeira vez minha mae trouxe um amigo dela para casa. Desde então, sempre o vi nos eventos em que ela me levava para trabalhar.", velo)//entao ele o conhece desde ciranca, parece estranho nao desenvolver nehnum sentimento em relacao a ele
 					escrevaa("/nJOSIANE: Conheci o Arnaldo em uma festa da alta sociedade. Ele era muito carismático e logo se tornou um amigo da nossa família.", velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso contrario:
 					erro("porque voce faz isso comigo...")
@@ -353,6 +394,8 @@ programa
 					escrevaa("/nMAFALDA: Meu objetivo era manter o clima da festa ativo e alegre...", velo)//na limpeza?
 					escrevaa("/nALEXANDRE: Eu estava lá para ajudar minha mae no evento que o senhor Arnaldo organizou. Era uma oportunidade de aprender com pessoas mais velhas.", velo)
 					escrevaa("/nJOSIANE: Eu estava no local para apoiar o Arnaldo em sua apresentação e garantir que ele tivesse todo o suporte necessário durante o evento.", velo)
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'b':
 					// b) Você teve algum desentendimento com alguém antes do ocorrido?
@@ -361,7 +404,8 @@ programa
 					escrevaa("/nMAFALDA: Sim, tive um desentendimento com o senhor Arnaldo sobre o horário em que deveria iniciar a limpeza. Ele queria que eu começasse mais cedo.", velo)//ah,bom
 					escrevaa("/nALEXANDRE: Não, eu não tive desentendimentos com ninguém. Eu estava apenas ajudando e tentando ficar fora de problemas.", velo)//sera que ele e problematico?
 					escrevaa("/nJOSIANE: Infelizmente, sim. Tive uma discussão leve com o Mario sobre a forma como ele estava abordando o projeto, mas já estava tudo resolvido antes do ocorrido.", velo)//denovo esse projeto!
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'c':
 					// c) Alguma vez já teve um motivo para fazer mal ao senhor Arnaldo?
@@ -370,7 +414,8 @@ programa
 					escrevaa("/nMAFALDA: Não, de forma alguma! Eu só queria o melhor para ele e para os projetos que trabalhávamos juntos.", velo)
 					escrevaa("/nALEXANDRE: Jamais! Ele sempre foi um ótimo chefe e eu só o respeitava.", velo)
 					escrevaa("/nJOSIANE: Não! Eu tinha muito respeito por ele. Sempre foi um bom marido e nunca pensei em machucá-lo.", velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso contrario:
 					erro("pergunta secreta? nao so o mesmo de sempre..")
@@ -390,6 +435,8 @@ programa
 					escrevaa("/nMAFALDA: Eu não percebi nada estranho. A festa estava bem animada e todos estavam se divertindo.", velo)
 					escrevaa("/nALEXANDRE: Nada que eu possa lembrar. Estava muito ocupado ajudando na organização da festa.", velo)
 					escrevaa("/nJOSIANE: Não, estava tudo normal. A única coisa estranha foi o barulho repentino antes do acidente.", velo)
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'b':
 					// b) Alguém parecia nervoso ou inquieto?
@@ -398,7 +445,8 @@ programa
 					escrevaa("/nMAFALDA: Não, ninguém parecia nervoso. O ambiente era festivo e descontraído.", velo)
 					escrevaa("/nALEXANDRE: Não, todos estavam animados. Não vi ninguém que parecesse ansioso ou inquieto.", velo)
 					escrevaa("/nJOSIANE: Não, tudo estava tranquilo. Apenas o senhor Arnaldo estava um pouco mais agitado do que o normal.", velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'c':
 					// c) Alguma vez você viu alguém agindo de forma suspeita?
@@ -407,7 +455,8 @@ programa
 					escrevaa("/nMAFALDA: Não, a festa estava animada e não notei comportamentos estranhos entre os convidados.", velo)
 					escrevaa("/nALEXANDRE: Não, eu não vi ninguém se comportando de forma estranha. Todos estavam se divertindo.", velo)
 					escrevaa("/nJOSIANE: Não, não vi ninguém que me deixasse desconfortável. Estava tudo tranquilo.", velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso contrario:
 					erro("Eu nao aguento mais")
@@ -427,6 +476,8 @@ programa
 					escrevaa("/nMAFALDA: Não, não ouvi nada sobre a relação dele com os convidados. Ele sempre foi cordial.", velo)
 					escrevaa("/nALEXANDRE: Não, não sabia de nada. Todos pareciam se divertir juntos e nada parecia fora do normal.", velo)
 					escrevaa("/nJOSIANE: Sim, ouvi rumores sobre discussões passadas. Ele estava muito nervoso, mas não sei exatamente o que aconteceu.", velo) //talvez ele soubesse o que ia por vir
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'b':
 					// b) Você notou alguma briga ou discussão?
@@ -435,7 +486,8 @@ programa
 					escrevaa("/nMAFALDA: Não, tudo estava tranquilo. Não houve discussões durante a festa.", velo)
 					escrevaa("/nALEXANDRE: Não, tudo estava pacífico. Estava mais focado na organização do que nas interações pessoais.", velo)
 					escrevaa("/nJOSIANE: Não, não vi nenhuma briga. Tudo estava tranquilo e normal.", velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso 'c':
 					// c) Você teve conhecimento de algum problema entre o senhor Arnaldo e os convidados?
@@ -444,7 +496,8 @@ programa
 					escrevaa("/nMAFALDA: Não, não soube de problemas. Todos pareciam se dar bem, pelo menos na superfície.", velo)
 					escrevaa("/nALEXANDRE: Não, não soube de nada. Todos estavam se divertindo e não notei tensão.", velo)
 					escrevaa("/nJOSIANE: Não, tudo parecia tranquilo. Eu estava focado em minha função e não ouvi nada a respeito.", velo)
-
+					escrevaa("/nLUTER:  ",velo) //
+					escrevaa("/nLIAH:  ",velo) //
 				pare
 				caso contrario:
 					erro("o cara nem pra deixar vazio, ta testando o sistema de erro, so pode")
