@@ -1,4 +1,4 @@
-# Repositorio para guardar as atividades de algoritimos, 2024
+# versao de php das seguintes atividades:
 ## -Atividade 1:
 [CaixaEletronico](https://github.com/AgemT/TarefasPortugol/tree/CaixaEletronico)
 ## -Atividade 2:
