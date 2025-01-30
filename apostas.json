@@ -1,0 +1,26 @@
+{
+    "megasena": {
+        "numero": 60,
+        "minimoNumeros": 6,
+        "maxNumeros": 15,
+        "preco": 4.50
+    },
+    "quina": {
+        "numero": 80,
+        "minimoNumeros": 5,
+        "maxNumeros": 15,
+        "preco": 2.00
+    },
+    "lotomania": { 
+        "numero": 100,
+        "minimoNumeros": 50,
+        "maxNumeros": 50,
+        "preco": 2.50
+    },
+    "lotofacil": {
+        "numero": 25,
+        "minimoNumeros": 15,
+        "maxNumeros": 20,
+        "preco": 2.50
+    }
+}
